@@ -2,7 +2,7 @@
 # pylint: disable=no-member
 """service to send sms via dinstar gsm gate service
 stub from gsminform.ru"""
-import time
+import uuid
 import json
 import os
 from tempfile import gettempdir
@@ -59,7 +59,7 @@ def sms_api():
         if rq_cmd == 'send':
             rq_msg = request.form['message']
             rq_to = request.form['to']
-            rq_tm = str(int(time.time()))
+            rq_tm = uuid.uuid4().hex
             send_sms(rq_tm, rq_to, rq_msg)
             return json.dumps({
                 'error_no':0,
