@@ -96,7 +96,7 @@ def gw_create_header():
 def gw_parse_data(data):
     """parse data from gw"""
     if data:
-        logging.info('<- %s', data.hex())
+        logging.info('<- %s', data)
         while data:
             header = {'len': unpack('!L', data[0:4])[0],
                       'id': {'mac': unpack('!6s', data[4:10])[0],
@@ -306,7 +306,7 @@ def gw_th_fn():
                     if cfg['gw_alive']:
                         with sq_lock:
                             for pkt in sq:
-                                logging.info('-> %s', pkt.hex())
+                                logging.info('-> %s', pkt)
                                 s.send(pkt)
                             sq.clear()
                     else:
